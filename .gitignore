@@ -1,0 +1,53 @@
+# =====================================================
+#  RESTAURANT - .gitignore
+# =====================================================
+
+# ── BACKEND (Maven / Spring Boot) ──────────────────
+**/target/
+**/.mvn/wrapper/maven-wrapper.jar
+**/mvnw
+**/mvnw.cmd
+
+# ── FRONTEND (Node / Angular) ──────────────────────
+**/node_modules/
+**/.angular/
+**/dist/
+**/.cache/
+
+# ── IDEs ───────────────────────────────────────────
+.idea/
+**/.idea/
+*.iml
+.vscode/
+**/.vscode/
+*.suo
+*.user
+
+# ── OS ─────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Logs ───────────────────────────────────────────
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ── Variables de entorno / secretos ────────────────
+.env
+.env.*
+*.env
+application-secret.yml
+application-local.yml
+
+# ── Cobertura y análisis ───────────────────────────
+**/coverage/
+**/.sonar/
+**/jacoco.exec
+
+# ── Docker volúmenes locales ───────────────────────
+docker-volumes/
+
+# ── Claude Code ────────────────────────────────────
+.claude/settings.local.json

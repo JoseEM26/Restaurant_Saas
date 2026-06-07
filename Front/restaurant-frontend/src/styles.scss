@@ -1,0 +1,114 @@
+// AG Grid v34 - NO importar CSS legacy (usa Theming API)
+
+// Tailwind
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Ionic variables
+:root {
+  --ion-color-primary:         #f97316;
+  --ion-color-primary-rgb:     249, 115, 22;
+  --ion-color-primary-shade:   #ea580c;
+  --ion-color-primary-tint:    #fb923c;
+  --ion-color-secondary:       #1e293b;
+  --ion-color-secondary-rgb:   30, 41, 59;
+  --ion-color-secondary-shade: #0f172a;
+  --ion-color-secondary-tint:  #334155;
+  --ion-color-success:         #22c55e;
+  --ion-color-warning:         #eab308;
+  --ion-color-danger:          #ef4444;
+  --ion-background-color:      #f1f5f9;
+  --ion-text-color:            #1e293b;
+  --ion-font-family:           'Inter', system-ui, sans-serif;
+}
+
+// Layout global
+ion-content { --background: #f1f5f9; }
+ion-toolbar  { --background: #1e293b; --color: #ffffff; }
+
+// Componentes reutilizables
+@layer components {
+  .card {
+    @apply bg-white rounded-2xl p-6 border border-gray-100;
+    box-shadow: 0 1px 3px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.04);
+  }
+
+  .page-header {
+    @apply flex items-center justify-between mb-6;
+    h1 { @apply text-2xl font-bold text-slate-800; }
+    p  { @apply text-sm text-slate-500 mt-0.5; }
+  }
+
+  // KPI cards
+  .kpi-card {
+    @apply card flex items-center gap-4;
+    .kpi-icon {
+      @apply w-12 h-12 rounded-xl flex items-center justify-center text-xl flex-shrink-0;
+    }
+    .kpi-value { @apply text-2xl font-bold text-slate-800 leading-none; }
+    .kpi-label { @apply text-xs text-slate-500 mt-1; }
+  }
+
+  // Badges de estado
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+    &-success  { @apply bg-green-100  text-green-800; }
+    &-warning  { @apply bg-amber-100  text-amber-800; }
+    &-danger   { @apply bg-red-100    text-red-800; }
+    &-info     { @apply bg-blue-100   text-blue-800; }
+    &-gray     { @apply bg-gray-100   text-gray-700; }
+  }
+
+  // Botones
+  .btn {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all;
+    &-primary   { @apply bg-orange-500 text-white hover:bg-orange-600 shadow-sm; }
+    &-secondary { @apply bg-slate-800  text-white hover:bg-slate-700  shadow-sm; }
+    &-outline   { @apply border border-slate-300 text-slate-700 hover:bg-slate-50; }
+    &-ghost     { @apply text-slate-600 hover:bg-slate-100; }
+    &-danger    { @apply bg-red-500 text-white hover:bg-red-600; }
+  }
+}
+
+// AG Grid tema personalizado
+.ag-theme-restaurant {
+  --ag-header-background-color:       #1e293b;
+  --ag-header-foreground-color:       #ffffff;
+  --ag-header-column-separator-color: #334155;
+  --ag-row-hover-color:               #fff7ed;
+  --ag-selected-row-background-color: #fed7aa;
+  --ag-odd-row-background-color:      #fafafa;
+  --ag-row-border-color:              #f1f5f9;
+  --ag-cell-horizontal-padding:       16px;
+  --ag-font-family:                   'Inter', sans-serif;
+  --ag-font-size:                     13px;
+  --ag-border-color:                  #e2e8f0;
+  --ag-wrapper-border-radius:         12px;
+  --ag-row-height:                    44px;
+  --ag-header-height:                 44px;
+
+  .ag-root-wrapper { border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; }
+  .ag-header-cell-label { font-weight: 600; font-size: 12px; letter-spacing: .04em; text-transform: uppercase; }
+  .ag-paging-panel { border-top: 1px solid #e2e8f0; padding: 8px 16px; background: #fafafa; }
+}
+
+// Sidebar Ionic tweaks
+ion-menu ion-content { --background: #0f172a; }
+ion-menu ion-list    { background: transparent; }
+ion-menu ion-item {
+  --background: transparent;
+  --color: #94a3b8;
+  --border-color: transparent;
+  border-radius: 10px;
+  margin: 2px 8px;
+  font-size: 14px;
+  font-weight: 500;
+  &.active-item, &.router-link-active {
+    --background: rgba(249,115,22,.15);
+    --color: #f97316;
+    ion-icon { color: #f97316 !important; }
+  }
+  &:hover:not(.router-link-active) { --background: rgba(255,255,255,.06); --color: #e2e8f0; }
+  ion-icon { color: #64748b; }
+}

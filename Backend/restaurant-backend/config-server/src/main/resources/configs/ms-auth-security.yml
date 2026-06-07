@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/db_auth
+    username: postgres
+    password: postgres
+jwt:
+  secret: clave-secreta-restaurant-2024-muy-larga-para-seguridad
+  expiration: 86400000

@@ -1,0 +1,8 @@
+# Configuración centralizada para ms-core-maestros
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/db_maestros
+    username: postgres
+    password: postgres
+  jpa:
+    show-sql: true

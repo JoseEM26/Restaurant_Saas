@@ -1,0 +1,9 @@
+# Configuración centralizada para ms-ventas
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/db_ventas
+    username: postgres
+    password: postgres
+  rabbitmq:
+    host: localhost
+    port: 5672

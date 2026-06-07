@@ -1,0 +1,91 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://localhost:4200"
+              - "http://localhost:3000"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - PATCH
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+            allowCredentials: true
+            maxAge: 3600
+
+      routes:
+        - id: ms-auth-security
+          uri: lb://ms-auth-security
+          predicates:
+            - Path=/api/auth/**
+
+        - id: ms-core-maestros
+          uri: lb://ms-core-maestros
+          predicates:
+            - Path=/api/maestros/**
+          filters:
+            - JwtAuthFilter
+
+        - id: ms-ventas
+          uri: lb://ms-ventas
+          predicates:
+            - Path=/api/ventas/**
+          filters:
+            - JwtAuthFilter
+
+        - id: ms-reportes
+          uri: lb://ms-reportes
+          predicates:
+            - Path=/api/reportes/**
+          filters:
+            - JwtAuthFilter
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+jwt:
+  secret: clave-secreta-restaurant-2024-muy-larga-para-seguridad
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    urls:
+      - name: Auth
+        url: /api/auth/v3/api-docs
+      - name: Maestros
+        url: /api/maestros/v3/api-docs
+      - name: Ventas
+        url: /api/ventas/v3/api-docs
